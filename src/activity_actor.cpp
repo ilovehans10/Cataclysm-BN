@@ -1782,7 +1782,10 @@ void lockpick_activity_actor::serialize( JsonOut &jsout ) const
     jsout.member( "progress", progress );
     jsout.member( "moves_total", moves_total );
     jsout.member( "lockpick", lockpick );
-    jsout.member( "fake_lockpick", fake_lockpick );
+    // only serialize the fake lockpick if it exists
+    if( fake_lockpick ) {
+        jsout.member( "fake_lockpick", *fake_lockpick );
+    }
     jsout.member( "target", target );
 
     jsout.end_object();
